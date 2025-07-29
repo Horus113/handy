@@ -1,0 +1,140 @@
+/* Basis: Mobile-first */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fafafa;
+}
+
+/* Header und Footer */
+header, footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255,255,255,0.8);
+}
+
+/* Hero-Sektion mit fixem Hintergrundbild */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background-image: url('images/hintergrund.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Semi-transparenter Overlay für bessere Lesbarkeit */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Text innerhalb des Hero */
+.hero h2, .hero p {
+  position: relative;
+  padding: 0 1rem;
+}
+
+/* Standard-Content */
+.content {
+  padding: 1rem;
+}
+
+/* Media Queries für Tablets & Smartphones */
+@media (max-width: 768px) {
+  .hero {
+    background-image: url('images/hintergrund.jpg');
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    background-image: url('images/hintergrund.jpg');
+    min-height: 40vh;
+  }
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Bilder im Text */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+
+/* Hamburger-Icon */
+.menu-icon {
+  position: fixed; top: 16px; left: 16px;
+  width: 40px; height: 30px;
+  display: block; cursor: pointer; z-index: 200;
+}
+.menu-icon span {
+  position: absolute;
+  display: block;
+  width: 100%; height: 4px;
+  background: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.menu-icon span:nth-child(1) { top: 0; }
+.menu-icon span:nth-child(2) { top: 13px; }
+.menu-icon span:nth-child(3) { top: 26px; }
+
+/* Menü verstecken */
+.menu {
+  position: fixed; top: 0; left: -100%;
+  width: 70%; max-width: 260px;
+  height: 100vh;
+  background: #111;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 150;
+}
+.menu ul { list-style: none; }
+.menu li { margin: 1rem 0; }
+.menu a {
+  display: block; padding: 0.5rem 1.5rem;
+  color: #fff; text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Animation bei Aktivierung */
+#menu-toggle:checked + .menu-icon span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 13px;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 13px;
+}
+#menu-toggle:checked ~ .menu {
+  left: 0;
+}
+
+/* Optional: Inhalt wird ein wenig verschoben (falls gewünscht) */
+main {
+  transition: margin-left 0.3s ease;
+}
+#menu-toggle:checked ~ main {
+  margin-left: 70%;
+}
+
