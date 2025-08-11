@@ -1,6 +1,6 @@
 
 html, body {
-   min-height: 100%;
+   min-height: 120vh;
   height: auto;
 }
 
@@ -340,6 +340,7 @@ main {
     width: auto;          /* Buttons passen sich Inhalt an */
   }
 }
+
 
 
 
