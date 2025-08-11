@@ -1,0 +1,525 @@
+
+html, body {
+  height: 100%;
+}
+
+/* Basis: Mobile-first */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('images/hintergrund.jpg') center center / cover no-repeat;
+  z-index: -1;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fafafa;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* auf jeden Fall über dem Menü und Hintergrund */
+}
+
+/* Hamburger nur links positionieren */
+.menu-icon {
+  left: 16px;
+  z-index: 1000;
+  position: absolute; top: 20px; left: 14px;       /*ICOM*/
+  width: 40px; height: 30px;
+  display: block; cursor: pointer;  
+}
+
+/* Überschrift mit untergeordnetem z-index */
+.site-title {
+  margin: 0;
+  z-index: 150;
+  text-align: center;
+}
+
+/* Optional: responsive Schriftgröße */
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+} 
+
+
+
+/* Header und Footer */
+.header {
+  text-align: center;
+  padding: 1rem;
+  background: rgb(255, 255, 255);
+}
+
+
+.footer {
+  background: #222;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+
+
+/* Standard-Content */
+.content {
+  padding: 1rem;
+}
+
+/* Media Queries für Tablets & Smartphones */
+@media (max-width: 768px) {
+  body::before {
+    background-image: url('images/hintergrund.jpg');
+    background-attachment: fixed;
+  }
+  
+
+}
+@media (max-width: 480px) {
+  body::before {
+    background-image: url('images/hintergrund.jpg');
+    background-attachment: fixed;
+  }
+  
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Bilder im Text */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+.menu-icon span {
+  position: absolute;
+  display: block;
+  width: 100%; height: 4px;
+  background: #333;
+  border-top: 2px;
+  transition: all 0.3s ease;
+}
+.menu-icon span:nth-child(1) { top: 0; }
+.menu-icon span:nth-child(2) { top: 13px; }
+.menu-icon span:nth-child(3) { top: 26px; }
+
+/* Menü verstecken */
+.menu {
+  position: fixed; top: 0; left: -100%;
+  width: 70%; max-width: 260px;
+  height: 100vh;
+  background: #111;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 200;
+}
+.menu ul { list-style: none; }
+.menu li { margin: 1rem 0; }
+.menu a {
+  display: block; padding: 0.5rem 1.5rem;
+  color: #fff; text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Animation bei Aktivierung */
+#menu-toggle:checked + .menu-icon span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 13px;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 13px;
+}
+#menu-toggle:checked ~ .menu {
+  left: 0;
+}
+
+/* Optional: Inhalt wird ein wenig verschoben (falls gewünscht) */
+main {
+  transition: margin-left 0.3s ease;
+}
+
+
+/*HINTERGRUND*/
+
+/* Inhalt über background */
+.site-content {
+  position: relative;
+  z-index: 3;
+  margin-top: 4rem;
+  flex: 1;
+  min-height: 60vh;
+}
+
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
+
+/* Basis-Layout: mobile-first (untereinander) */
+.button-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.button-nav .button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #000000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  text-align: center;
+  border-radius: 4px;
+  width: 100%;            /* mobil: Buttons füllen Breite */
+  max-width: 300px;       /* max-Breite begrenzt auf größeren Bildschirmen */
+}
+
+/* Desktop-View (ab ca. 768px): nebeneinander */
+@media (min-width: 768px) {
+  .button-nav {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .button-nav .button {
+    width: auto;          /* Buttons passen sich Inhalt an */
+  }
+}
+
+/* Unterkunft - Karten-Grid */
+.zimmer-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr; /* mobile-first: 1 Spalte */
+  padding: 1rem;
+}
+
+.zimmer-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  text-align: center;
+  padding-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.zimmer-card:hover {
+  transform: translateY(-4px);
+}
+
+.zimmer-bild {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.zimmer-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.zimmer-card p {
+  margin: 0.25rem 0;
+}
+
+.preis {
+  font-weight: bold;
+  color: #6b4f2d;
+  font-size: 1.2rem;
+}
+
+/* Tablet und Desktop: mehrere Spalten */
+@media (min-width: 600px) {
+  .zimmer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .zimmer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Abschnittsüberschrift Unterkunft */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #ffffff;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Einleitender Text unter h2 */
+.section-intro {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+
+.zimmer-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.zimmer-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.zimmer-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.zimmer-card p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.zimmer-card .icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .zimmer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  .zimmer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Kontakt Grid: mobil untereinander */
+.kontakt-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Kontaktkarten */
+.kontakt-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.kontakt-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.kontakt-card a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.kontakt-card a:hover {
+  text-decoration: underline;
+}
+
+/* Map Container: volle Breite mit Radius und Schatten */
+.map-container {
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 100%;
+  height: 300px; /* etwas kleiner auf Mobil */
+}
+
+/* Tablet & Desktop (ab 600px Breite) */
+@media (min-width: 600px) {
+  .kontakt-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .map-container {
+    height: 350px; /* etwas größer */
+  }
+}
+
+/*GALERIE*/
+
+.galerie-grid {
+  display: grid;
+  grid-template-columns: 1fr;  /* mobil 1 Spalte */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.galerie-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.galerie-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.galerie-item img:hover {
+  transform: scale(1.05);
+}
+
+.galerie-item figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #222;
+}
+
+/* Tablet und Desktop */
+@media (min-width: 600px) {
+  .galerie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .galerie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*ÜBERUNS*/
+
+.geschichte {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 1rem auto 3rem auto;
+  color: #222;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .geschichte {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    z-index: 1000;
+  }
+}
+
+.entwicklung-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem 1rem 3rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.entwicklung-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.entwicklung-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.entwicklung-item figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #222;
+  font-style: italic;
+}
+
+/* Tablet und Desktop */
+@media (min-width: 600px) {
+  .entwicklung-gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}

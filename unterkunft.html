@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unterkunft - Landgasthof Schmidt</title>
+  <link rel="stylesheet" href="unterkunft.css"> 
+</head>
+<body>
+  <div class="page-wrapper">
+        
+    <header class="header">
+      <h1 class="site-title">Landgasthof Schmidt</h1>
+    </header>
+       
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="menu">
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="speisekarte.html">Speisekarte</a></li>
+        <li><a href="unterkunft.html" class="active">Unterkunft</a></li>
+        <li><a href="kanuverleih.html">Kanuverleih</a></li>
+        <li><a href="öffnungszeiten.html">Öffnungszeiten</a></li>
+        <li><a href="überuns.html">Über uns</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+      
+    <main class="site-content">
+      <h2 class="section-title">Unsere Unterkunft</h2>
+      <p class="section-intro">
+        Genießen Sie erholsame Nächte in unseren gemütlichen Zimmern – ob alleine, zu zweit oder im rustikalen Ambiente.
+      </p>
+      <div class="zimmer-grid">
+        <!-- Einzelzimmer -->
+        <div class="zimmer-card">
+          <img src="bilder/einzelzimmer.jpg" alt="Einzelzimmer" class="zimmer-bild">
+          <h3>Einzelzimmer</h3>
+          <p>Perfekt für Alleinreisende</p>
+          <p class="preis">50 € / Nacht</p>
+        </div>
+
+        <!-- Doppelzimmer -->
+        <div class="zimmer-card">
+          <img src="bilder/doppelzimmer.jpg" alt="Doppelzimmer" class="zimmer-bild">
+          <h3>Doppelzimmer</h3>
+          <p>Ideal für Paare oder Freunde</p>
+          <p class="preis">60 € / Nacht</p>
+        </div>
+
+        <!-- Rustikus -->
+        <div class="zimmer-card">
+          <img src="bilder/rustikus.jpg" alt="Rustikus Zimmer" class="zimmer-bild">
+          <h3>Rustikus</h3>
+          <p>Rustikales Flair mit Komfort</p>
+          <p class="preis">75  € / Nacht</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      © 2025 Landgasthof Schmidt
+    </footer>
+  </div>
+</body>
+</html>
