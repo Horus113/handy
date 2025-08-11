@@ -1,0 +1,349 @@
+
+html, body {
+  min-height: 100%;
+  height: auto;
+}
+
+/* Basis: Mobile-first */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: url('images/hintergrund.jpg') center center / cover no-repeat;
+  z-index: -1;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background-color: #C2D6A6;
+  color: #3B2A2A;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* auf jeden Fall über dem Menü und Hintergrund */
+  text-align: center;
+  padding: 1rem;
+  background: #3B2A2A;
+}
+
+
+/* Hamburger nur links positionieren */
+.menu-icon {
+  left: 16px;
+  z-index: 1000;
+  position: absolute; top: 20px; left: 14px;       /*ICOM*/
+  width: 40px; height: 30px;
+  display: block; cursor: pointer;  
+}
+
+/* Überschrift mit untergeordnetem z-index */
+.site-title {
+  margin: 0;
+  z-index: 150;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Optional: responsive Schriftgröße */
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+} 
+
+
+.footer {
+  background: #3B2A2A;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+
+
+/* Standard-Content */
+.content {
+  padding: 1rem;
+}
+
+/* Media Queries für Tablets & Smartphones */
+@media (max-width: 768px) {
+  body::before {
+    background-image: url('images/hintergrund.jpg');
+    background-attachment: fixed;
+  }
+  
+
+}
+@media (max-width: 480px) {
+  body::before {
+    background-image: url('images/hintergrund.jpg');
+    background-attachment: fixed;
+  }
+  
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Bilder im Text */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+.menu-icon span {
+  position: absolute;
+  display: block;
+  width: 100%; height: 4px;
+  background: white;
+  border-top: 2px;
+  transition: all 0.3s ease;
+}
+.menu-icon span:nth-child(1) { top: 0; }
+.menu-icon span:nth-child(2) { top: 13px; }
+.menu-icon span:nth-child(3) { top: 26px; }
+
+/* Menü verstecken */
+.menu {
+  position: absolute; top: 0; left: -100%;
+  width: 70%; max-width: 260px;
+  height: 100vh;
+  background: #111;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 200;
+}
+.menu ul { list-style: none; }
+.menu li { margin: 1rem 0; }
+.menu a {
+  display: block; padding: 0.5rem 1.5rem;
+  color: #fff; text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Animation bei Aktivierung */
+#menu-toggle:checked + .menu-icon span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 13px;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 13px;
+}
+#menu-toggle:checked ~ .menu {
+  left: 0;
+}
+
+/* Optional: Inhalt wird ein wenig verschoben (falls gewünscht) */
+main {
+  transition: margin-left 0.3s ease;
+}
+
+
+/*HINTERGRUND*/
+
+/* Inhalt über background */
+.site-content {
+  position: relative;
+  z-index: 3;
+  margin-top: 4rem;
+}
+
+
+.text-und-galerie-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+/*FREIERTEXT*/
+/* Der verschiebbare Kasten */
+.text-box {
+  position: relative;       /* wichtig: kein absolute mehr */
+  margin: 2rem auto;
+  padding: 1rem;
+  background: rgba(255,255,255,0.9);
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  max-width: 90%;
+  z-index: 2;
+  flex: 1 1 100%;
+  ;
+}
+
+/* Mobile-Anpassung */
+@media (max-width: 480px) {
+  .text-box {
+    top: 30%;
+    left: 1%;
+    right: 1%;
+    width: 90vw;
+    max-width: none;
+    text-align: center;
+  }
+}
+
+
+
+
+/* Tablet-Anpassung */
+@media (min-width: 481px) and (max-width: 768px) {
+  .text-box {
+    top: 25%;
+    left: 0%;
+    width: 85%;
+    max-width: 250px;
+    text-align: center;
+  }
+}
+
+/*GALERIE*/
+
+/* Grundcontainer */
+.slider-container {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;              /* Wichtig: auto statt feste Höhe */
+  aspect-ratio: 3 / 2;       /* Steuert Höhe über Breite */
+  overflow: hidden;
+  margin: 2rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+}
+
+.slider {
+  display: flex;
+  width: 100%; /* 5 Bilder = 500% */
+  height: 100%;
+  animation: slide5 25s infinite;
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* Bild füllt Container ohne Verzerrung */
+  object-position: center;
+  display: block;
+}
+
+/* Keyframe-Animation für Bildwechsel alle 5 Sekunden */
+@keyframes slide5 {
+  0%, 20%    { transform: translateX(0%); }
+  25%, 45%   { transform: translateX(-100%); }
+  50%, 70%   { transform: translateX(-200%); }
+  75%, 95%   { transform: translateX(-300%); }
+  100%       { transform: translateX(-400%); }
+}
+
+/* Mobile-Optimierung */
+@media (max-width: 480px) {
+  .slider-container {
+    width: 90vw;
+    bottom: 5px;
+    right: 1%;
+    left: 1%;
+    height: 300px;
+    aspect-ratio: 4 / 3; /* für Handy höhere Galerie */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+}
+
+/* Tablet-Anpassung */
+@media (min-width: 481px) and (max-width: 768px) {
+  .slider-container {
+    width: 80vw;
+    bottom: 8%;
+    right: 0%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    /* NEU: Umrandung */  
+  }
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-content {
+  flex: 1;
+  position: relative;
+  z-index: 3;
+  min-height: 60vh; /* oder mehr */
+}
+
+
+/* Basis-Layout: mobile-first (untereinander) */
+.button-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.button-nav .button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #000000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  text-align: center;
+  border-radius: 4px;
+  width: 100%;            /* mobil: Buttons füllen Breite */
+  max-width: 300px;       /* max-Breite begrenzt auf größeren Bildschirmen */
+}
+
+/* Desktop-View (ab ca. 768px): nebeneinander */
+@media (min-width: 768px) {
+  .button-nav {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .button-nav .button {
+    width: auto;          /* Buttons passen sich Inhalt an */
+  }
+}
+
