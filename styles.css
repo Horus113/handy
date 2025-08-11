@@ -1,6 +1,7 @@
 
 html, body {
-  height: 100%;
+   min-height: 100%;
+  height: auto;
 }
 
 /* Basis: Mobile-first */
@@ -345,6 +346,7 @@ main {
     width: auto;          /* Buttons passen sich Inhalt an */
   }
 }
+
 
 
 
